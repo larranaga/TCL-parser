@@ -1,12 +1,15 @@
 lexer grammar TclV1;
 
 
+
+
 //palabras clave
 SET                 :   'set';
 PUTS                :   'puts';
 IF                  :   'if';
 THEN                :   'then';
 ELSEIF              :   'elseif';
+ELSE                :   'else';
 SWITCH              :   'switch';
 DEFAULT             :   'default';
 WHILE               :   'while';
@@ -22,7 +25,7 @@ PROC                :   'proc';
 
 
 //lexemas
-STRINGVALUE         :   ('"')[.]*('"');
+STRINGVALUE         :   '"'(~[\r\n])*'"';
 
 INTEGERVALUE        :   [0-9][0-9]*;
 
@@ -45,19 +48,18 @@ TOKEN_IGUAL_STR     :   'eq';
 TOKEN_IGUAL_NUM     :   '==';
 TOKEN_DIFF_STR      :   'ne';
 TOKEN_DIFF_NUM      :   '!=';
+TOKEN_NOT           :   '!';
 TOKEN_AND           :   '&&';
 TOKEN_OR            :   '||';
-TOKEN_NOT           :   '!';
 TOKEN_MAS           :   '+';
 TOKEN_MENOS         :   '-';
 TOKEN_MUL           :   '*';
+TOKEN_POT           :   '**';
 TOKEN_DIV           :   '/';
 TOKEN_MOD           :   '%';
-TOKEN_POT           :   '**';
+
 
 ID                  : [a-zA-Z_][a-zA-Z0-9_]*;
-
 WS                  : [ \n\t\r]+ -> skip ;
-
 COMMENT             : '#' ~[\r\n]* -> skip;
-
+ERRORCHARACTER      : . ;
