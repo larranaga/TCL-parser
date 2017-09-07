@@ -1,5 +1,2 @@
-<token_integer,8999,3,1>
-<id,identificador,3,6>
-<token_integer,89999,5,1>
-<id,identificador2,5,6>
->>> Error lexico linea: 7, posicion: 1)
+<token_diff_num,1,1>
+>>> Error lexico (linea: 1, posicion: 3)

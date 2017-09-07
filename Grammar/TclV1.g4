@@ -5,6 +5,8 @@ lexer grammar TclV1;
 
 //palabras clave
 SET                 :   'set';
+GETS                :   'gets';
+STDIN               :   'stdin';
 PUTS                :   'puts';
 IF                  :   'if';
 THEN                :   'then';

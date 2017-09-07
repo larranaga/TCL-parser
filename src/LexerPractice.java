@@ -26,6 +26,8 @@ public class LexerPractice {
         keywords = new TreeSet<>();
         keywords.add("set");
         keywords.add("puts");
+        keywords.add("gets");
+        keywords.add("stdin");
         keywords.add("if");
         keywords.add("then");
         keywords.add("else");
@@ -153,7 +155,7 @@ public class LexerPractice {
                             .append(",")
                             .append((tokenType.equals("token_string") ? lexema.replaceAll("\"", "") : lexema  ));
                 } catch (Exception e){
-                    output.append(">>> Error lexico ")
+                    output.append(">>> Error lexico (")
                             .append("linea: ")
                             .append(token.getLine())
                             .append(", posicion: ")
@@ -179,10 +181,10 @@ public class LexerPractice {
     }
 
     public static void main(String[] args) throws Exception {
-        final int[] SAMPLES = {1, 1, 1, 1, 1};
+        final int[] SAMPLES = {5, 5, 4, 4, 8};
         final int NUMBER_OF_EXAMPLES = 7;
         final String directory = "lexer-test-cases/";
-        final String examples_directory = "lexer-examples/";
+        final String samples_directory = "lexer-samples/";
         final String inputPrefix = "in0";
         final String outputPrefix = "out0";
         final String extension = ".txt";
@@ -191,15 +193,6 @@ public class LexerPractice {
 
         lexerPractice.setFiles("lexer-test-cases/single-input.txt", "lexer-test-cases/output.txt");
         lexerPractice.generateOutput();
-
-
-        for(int i = 0; i < NUMBER_OF_EXAMPLES; i++){
-            lexerPractice.setFiles(examples_directory + "/" + inputPrefix + i + extension,
-                    examples_directory + "/" + outputPrefix + i + extension);
-            lexerPractice.generateOutput();
-        }
-
-        /*
 
         for(char c = 'A'; c <= 'E'; c++){
             for(int i = 0 ; i < SAMPLES[(int)(c - 'A')]; i++){
@@ -210,6 +203,5 @@ public class LexerPractice {
                 lexerPractice.generateOutput();
             }
         }
-        */
     }
 }
