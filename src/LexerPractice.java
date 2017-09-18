@@ -194,7 +194,7 @@ public class LexerPractice {
         lexerPractice.setFiles("lexer-test-cases/single-input.txt", "lexer-test-cases/output.txt");
         lexerPractice.generateOutput();
 
-        for(char c = 'A'; c <= 'E'; c++){
+        /*for(char c = 'A'; c <= 'E'; c++){
             for(int i = 0 ; i < SAMPLES[(int)(c - 'A')]; i++){
                 lexerPractice.setFiles(directory + "/" + String.valueOf(c) + "/"
                                          + inputPrefix + i + extension,
@@ -202,6 +202,6 @@ public class LexerPractice {
                                          + outputPrefix + i + extension);
                 lexerPractice.generateOutput();
             }
-        }
+        }*/
     }
 }

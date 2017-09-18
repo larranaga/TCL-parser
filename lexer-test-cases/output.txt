@@ -1,2 +1,1 @@
-<token_diff_num,1,1>
->>> Error lexico (linea: 1, posicion: 3)
+>>> Error lexico (linea: 1, posicion: 1)
