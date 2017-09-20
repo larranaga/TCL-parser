@@ -1,17 +1,21 @@
 grammar TclV2;
 
-tcl                 :   instruction EOF;
+tcl                 :   instructionBlock EOF;
 
-instruction         :   declaration instruction
-                    |   ifBlock instruction
-                    |   whileBlock instruction
-                    |   forBlock instruction
-                    |   switchBlock instruction
-                    |   readInput instruction
-                    |   writeOutput instruction
-                    |   execution instruction
+instructionBlock    :   instruction instructionBlock
                     |
                     ;
+
+instruction         :   declaration TOKEN_PYC
+                    |   ifBlock TOKEN_PYC
+                    |   whileBlock TOKEN_PYC
+                    |   forBlock TOKEN_PYC
+                    |   switchBlock TOKEN_PYC
+                    |   readInput TOKEN_PYC
+                    |   writeOutput TOKEN_PYC
+                    |   execution TOKEN_PYC
+                    ;
+
 
 /***********************************************************declaration ***********************************************/
 
@@ -26,11 +30,22 @@ array               :   TOKEN_PAR_IZQ execution TOKEN_PAR_DER
                     ;
 
 /******************************************** control structures*******************************************************/
-cuerpo              :   TOKEN_LLAVE_IZQ instruction TOKEN_LLAVE_DER;
 
-ifBlock             :   IF TOKEN_LLAVE_IZQ expression TOKEN_LLAVE_DER cuerpo elseif cuerpo;
+//if
+ifBlock             :   IF TOKEN_LLAVE_IZQ expression TOKEN_LLAVE_DER THEN TOKEN_LLAVE_IZQ instructionBlock TOKEN_LLAVE_DER elseifBlock elseBlock;
+elseifBlock         :   elseif elseifBlock
+                    |
+                    ;
+elseif              :   ELSEIF TOKEN_LLAVE_IZQ expression TOKEN_LLAVE_DER THEN TOKEN_LLAVE_IZQ instructionBlock TOKEN_LLAVE_DER;
+elseBlock           :   else elseBlock
+                    |
+                    ;
+else                :   ELSE TOKEN_LLAVE_IZQ instructionBlock TOKEN_LLAVE_DER
+                    |
+                    ;
 
-
+//for
+forBlock            :   FOR;
 /********************************************** execution block *******************************************************/
 
 
