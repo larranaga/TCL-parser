@@ -44,6 +44,7 @@ public class LexerPractice {
         keywords.add("exists");
         keywords.add("size");
         keywords.add("proc");
+        keywords.add("return");
     }
 
     private void fillOperators(){

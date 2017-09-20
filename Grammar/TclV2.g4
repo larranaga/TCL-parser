@@ -16,8 +16,10 @@ instruction         :   declaration TOKEN_PYC
                     |   execution TOKEN_PYC
                     ;
 
+/*********************************************expressions**************************************************************/
+expression          : ID;
 
-/***********************************************************declaration ***********************************************/
+/*********************************************declaration *************************************************************/
 
 declaration         :   SET ID array value_to_assign;
 
@@ -29,6 +31,36 @@ array               :   TOKEN_PAR_IZQ execution TOKEN_PAR_DER
                     |
                     ;
 
+
+/*********************************************input-output*************************************************************/
+readInput           :   GETS STDIN;
+
+writeOutput         :   PUTS outputArgument;
+
+outputArgument      :   execution
+                    |   value
+                    ;
+
+/*********************************************execution****************************************************************/
+
+subRutineArgumentListCall   :   subRutineArgumentCall subRutineArgumentListCall
+                        |
+                        ;
+
+subRutineArgumentCall       :   TOKEN_LLAVE_IZQ expression TOKEN_LLAVE_DER;
+
+arrayCallArguments          :   SIZE ID
+                            |   EXISTS ID
+                            ;
+
+execution           :   TOKEN_COR_IZQ executionBody TOKEN_COR_DER;
+
+executionBody       :   EXPR TOKEN_LLAVE_IZQ expression TOKEN_LLAVE_DER
+                    |   ID subRutineArgumentListCall
+                    |   ARRAY arrayCallArguments
+                    |   readInput
+                    ;
+
 /******************************************** control structures*******************************************************/
 
 //if
@@ -37,18 +69,47 @@ elseifBlock         :   elseif elseifBlock
                     |
                     ;
 elseif              :   ELSEIF TOKEN_LLAVE_IZQ expression TOKEN_LLAVE_DER THEN TOKEN_LLAVE_IZQ instructionBlock TOKEN_LLAVE_DER;
-elseBlock           :   else elseBlock
+elseBlock           :   elseSubBlock elseBlock
                     |
                     ;
-else                :   ELSE TOKEN_LLAVE_IZQ instructionBlock TOKEN_LLAVE_DER
-                    |
-                    ;
+elseSubBlock        :   ELSE TOKEN_LLAVE_IZQ instructionBlock TOKEN_LLAVE_DER;
 
 //for
-forBlock            :   FOR;
-/********************************************** execution block *******************************************************/
+forBlock            :   FOR TOKEN_LLAVE_IZQ SET ID INTEGERVALUE TOKEN_LLAVE_DER TOKEN_LLAVE_IZQ expression TOKEN_LLAVE_DER TOKEN_LLAVE_IZQ INCR ID INTEGERVALUE TOKEN_LLAVE_DER TOKEN_LLAVE_IZQ instructionBlockCycle TOKEN_LLAVE_DER;
+
+whileBlock          :   WHILE TOKEN_LLAVE_IZQ expression TOKEN_LLAVE_DER TOKEN_LLAVE_IZQ instructionBlockCycle  TOKEN_LLAVE_DER;
+
+instructionBlockCycle    :   cycleInstruction instructionBlock
+                    |
+                    ;
+
+cycleInstruction    :   declaration TOKEN_PYC
+                    |   ifBlock TOKEN_PYC
+                    |   whileBlock TOKEN_PYC
+                    |   forBlock TOKEN_PYC
+                    |   switchBlock TOKEN_PYC
+                    |   readInput TOKEN_PYC
+                    |   writeOutput TOKEN_PYC
+                    |   execution TOKEN_PYC
+                    |   BREAK TOKEN_PYC
+                    |   CONTINUE TOKEN_PYC
+                    ;
+
+switchBlock         :   SWITCH TOKEN_DOLLAR ID TOKEN_LLAVE_IZQ caseBlock defaultBlock TOKEN_LLAVE_DER;
+
+caseBlock           :   caseSubBlock caseBlock
+                    |
+                    ;
+
+caseSubBlock        :   CASE INTEGERVALUE TOKEN_LLAVE_IZQ instructionBlockCycle TOKEN_LLAVE_DER;
+
+defaultBlock        :   defaultSubBlock
+                    |
+                    ;
+defaultSubBlock     :   DEFAULT TOKEN_LLAVE_IZQ instructionBlockCycle TOKEN_LLAVE_DER;
 
 
+//TODO SUBROUTINE AND EXPRESSION
 /************************************************* HELPERS ************************************************************/
 
 value               :   STRINGVALUE
@@ -80,6 +141,9 @@ ARRAY               :   'array';
 EXISTS              :   'exists';
 SIZE                :   'size';
 PROC                :   'proc';
+RETURN              :   'return';
+CASE                :   'case';
+
 
 
 //lexemas

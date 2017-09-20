@@ -24,6 +24,7 @@ ARRAY               :   'array';
 EXISTS              :   'exists';
 SIZE                :   'size';
 PROC                :   'proc';
+RETURN              :   'return';
 
 
 //lexemas
