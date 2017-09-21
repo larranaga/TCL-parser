@@ -34,6 +34,84 @@ public interface TclV2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpression(TclV2Parser.ExpressionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#binary_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBinary_expression(TclV2Parser.Binary_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#unary_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUnary_expression(TclV2Parser.Unary_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#binary_operator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBinary_operator(TclV2Parser.Binary_operatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#unary_operator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUnary_operator(TclV2Parser.Unary_operatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#single_id}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSingle_id(TclV2Parser.Single_idContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#subRoutineBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSubRoutineBlock(TclV2Parser.SubRoutineBlockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#subRoutineDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSubRoutineDeclaration(TclV2Parser.SubRoutineDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#subRoutineArgumentListDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSubRoutineArgumentListDeclaration(TclV2Parser.SubRoutineArgumentListDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#subRoutineArgumentDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSubRoutineArgumentDeclaration(TclV2Parser.SubRoutineArgumentDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#instructionBlockSubroutine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInstructionBlockSubroutine(TclV2Parser.InstructionBlockSubroutineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#subRoutineInstruction}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSubRoutineInstruction(TclV2Parser.SubRoutineInstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#returnStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnStatement(TclV2Parser.ReturnStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#returnArguments}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnArguments(TclV2Parser.ReturnArgumentsContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TclV2Parser#declaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -51,6 +129,12 @@ public interface TclV2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitArray(TclV2Parser.ArrayContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#array_index}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArray_index(TclV2Parser.Array_indexContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TclV2Parser#readInput}.
 	 * @param ctx the parse tree
@@ -70,17 +154,23 @@ public interface TclV2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitOutputArgument(TclV2Parser.OutputArgumentContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TclV2Parser#subRutineArgumentListCall}.
+	 * Visit a parse tree produced by {@link TclV2Parser#subRoutineArgumentListCall}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSubRutineArgumentListCall(TclV2Parser.SubRutineArgumentListCallContext ctx);
+	T visitSubRoutineArgumentListCall(TclV2Parser.SubRoutineArgumentListCallContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TclV2Parser#subRutineArgumentCall}.
+	 * Visit a parse tree produced by {@link TclV2Parser#subRoutineArgumentCall}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSubRutineArgumentCall(TclV2Parser.SubRutineArgumentCallContext ctx);
+	T visitSubRoutineArgumentCall(TclV2Parser.SubRoutineArgumentCallContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#subRoutineArgumentFormat}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSubRoutineArgumentFormat(TclV2Parser.SubRoutineArgumentFormatContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TclV2Parser#arrayCallArguments}.
 	 * @param ctx the parse tree
@@ -135,6 +225,12 @@ public interface TclV2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitForBlock(TclV2Parser.ForBlockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#incrArgument}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIncrArgument(TclV2Parser.IncrArgumentContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TclV2Parser#whileBlock}.
 	 * @param ctx the parse tree

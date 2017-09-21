@@ -47,6 +47,136 @@ public interface TclV2Listener extends ParseTreeListener {
 	 */
 	void exitExpression(TclV2Parser.ExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TclV2Parser#binary_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterBinary_expression(TclV2Parser.Binary_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TclV2Parser#binary_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitBinary_expression(TclV2Parser.Binary_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TclV2Parser#unary_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterUnary_expression(TclV2Parser.Unary_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TclV2Parser#unary_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitUnary_expression(TclV2Parser.Unary_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TclV2Parser#binary_operator}.
+	 * @param ctx the parse tree
+	 */
+	void enterBinary_operator(TclV2Parser.Binary_operatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TclV2Parser#binary_operator}.
+	 * @param ctx the parse tree
+	 */
+	void exitBinary_operator(TclV2Parser.Binary_operatorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TclV2Parser#unary_operator}.
+	 * @param ctx the parse tree
+	 */
+	void enterUnary_operator(TclV2Parser.Unary_operatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TclV2Parser#unary_operator}.
+	 * @param ctx the parse tree
+	 */
+	void exitUnary_operator(TclV2Parser.Unary_operatorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TclV2Parser#single_id}.
+	 * @param ctx the parse tree
+	 */
+	void enterSingle_id(TclV2Parser.Single_idContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TclV2Parser#single_id}.
+	 * @param ctx the parse tree
+	 */
+	void exitSingle_id(TclV2Parser.Single_idContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TclV2Parser#subRoutineBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterSubRoutineBlock(TclV2Parser.SubRoutineBlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TclV2Parser#subRoutineBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitSubRoutineBlock(TclV2Parser.SubRoutineBlockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TclV2Parser#subRoutineDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterSubRoutineDeclaration(TclV2Parser.SubRoutineDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TclV2Parser#subRoutineDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitSubRoutineDeclaration(TclV2Parser.SubRoutineDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TclV2Parser#subRoutineArgumentListDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterSubRoutineArgumentListDeclaration(TclV2Parser.SubRoutineArgumentListDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TclV2Parser#subRoutineArgumentListDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitSubRoutineArgumentListDeclaration(TclV2Parser.SubRoutineArgumentListDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TclV2Parser#subRoutineArgumentDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterSubRoutineArgumentDeclaration(TclV2Parser.SubRoutineArgumentDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TclV2Parser#subRoutineArgumentDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitSubRoutineArgumentDeclaration(TclV2Parser.SubRoutineArgumentDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TclV2Parser#instructionBlockSubroutine}.
+	 * @param ctx the parse tree
+	 */
+	void enterInstructionBlockSubroutine(TclV2Parser.InstructionBlockSubroutineContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TclV2Parser#instructionBlockSubroutine}.
+	 * @param ctx the parse tree
+	 */
+	void exitInstructionBlockSubroutine(TclV2Parser.InstructionBlockSubroutineContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TclV2Parser#subRoutineInstruction}.
+	 * @param ctx the parse tree
+	 */
+	void enterSubRoutineInstruction(TclV2Parser.SubRoutineInstructionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TclV2Parser#subRoutineInstruction}.
+	 * @param ctx the parse tree
+	 */
+	void exitSubRoutineInstruction(TclV2Parser.SubRoutineInstructionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TclV2Parser#returnStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturnStatement(TclV2Parser.ReturnStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TclV2Parser#returnStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturnStatement(TclV2Parser.ReturnStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TclV2Parser#returnArguments}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturnArguments(TclV2Parser.ReturnArgumentsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TclV2Parser#returnArguments}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturnArguments(TclV2Parser.ReturnArgumentsContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TclV2Parser#declaration}.
 	 * @param ctx the parse tree
 	 */
@@ -76,6 +206,16 @@ public interface TclV2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitArray(TclV2Parser.ArrayContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TclV2Parser#array_index}.
+	 * @param ctx the parse tree
+	 */
+	void enterArray_index(TclV2Parser.Array_indexContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TclV2Parser#array_index}.
+	 * @param ctx the parse tree
+	 */
+	void exitArray_index(TclV2Parser.Array_indexContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TclV2Parser#readInput}.
 	 * @param ctx the parse tree
@@ -107,25 +247,35 @@ public interface TclV2Listener extends ParseTreeListener {
 	 */
 	void exitOutputArgument(TclV2Parser.OutputArgumentContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TclV2Parser#subRutineArgumentListCall}.
+	 * Enter a parse tree produced by {@link TclV2Parser#subRoutineArgumentListCall}.
 	 * @param ctx the parse tree
 	 */
-	void enterSubRutineArgumentListCall(TclV2Parser.SubRutineArgumentListCallContext ctx);
+	void enterSubRoutineArgumentListCall(TclV2Parser.SubRoutineArgumentListCallContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TclV2Parser#subRutineArgumentListCall}.
+	 * Exit a parse tree produced by {@link TclV2Parser#subRoutineArgumentListCall}.
 	 * @param ctx the parse tree
 	 */
-	void exitSubRutineArgumentListCall(TclV2Parser.SubRutineArgumentListCallContext ctx);
+	void exitSubRoutineArgumentListCall(TclV2Parser.SubRoutineArgumentListCallContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TclV2Parser#subRutineArgumentCall}.
+	 * Enter a parse tree produced by {@link TclV2Parser#subRoutineArgumentCall}.
 	 * @param ctx the parse tree
 	 */
-	void enterSubRutineArgumentCall(TclV2Parser.SubRutineArgumentCallContext ctx);
+	void enterSubRoutineArgumentCall(TclV2Parser.SubRoutineArgumentCallContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TclV2Parser#subRutineArgumentCall}.
+	 * Exit a parse tree produced by {@link TclV2Parser#subRoutineArgumentCall}.
 	 * @param ctx the parse tree
 	 */
-	void exitSubRutineArgumentCall(TclV2Parser.SubRutineArgumentCallContext ctx);
+	void exitSubRoutineArgumentCall(TclV2Parser.SubRoutineArgumentCallContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TclV2Parser#subRoutineArgumentFormat}.
+	 * @param ctx the parse tree
+	 */
+	void enterSubRoutineArgumentFormat(TclV2Parser.SubRoutineArgumentFormatContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TclV2Parser#subRoutineArgumentFormat}.
+	 * @param ctx the parse tree
+	 */
+	void exitSubRoutineArgumentFormat(TclV2Parser.SubRoutineArgumentFormatContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TclV2Parser#arrayCallArguments}.
 	 * @param ctx the parse tree
@@ -216,6 +366,16 @@ public interface TclV2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitForBlock(TclV2Parser.ForBlockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TclV2Parser#incrArgument}.
+	 * @param ctx the parse tree
+	 */
+	void enterIncrArgument(TclV2Parser.IncrArgumentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TclV2Parser#incrArgument}.
+	 * @param ctx the parse tree
+	 */
+	void exitIncrArgument(TclV2Parser.IncrArgumentContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TclV2Parser#whileBlock}.
 	 * @param ctx the parse tree
