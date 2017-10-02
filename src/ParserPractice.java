@@ -147,7 +147,7 @@ public class ParserPractice {
         }
     }
 
-    private final static int[] TEST_CASES = {0, 0};
+    private final static int[] TEST_CASES = {5, 5, 4, 4, 2};
 
     private final static String directory = "parser-test-cases";
     private final static String samples_directory = "parser-samples";
@@ -172,7 +172,7 @@ public class ParserPractice {
             parserPractice.generateOutput();
         }
 
-        for(char c = 'A'; c <= 'B'; c++){
+        for(char c = 'A'; c <= 'E'; c++){
             for(int i = 0; i < TEST_CASES[(int)(c - 'A')]; i++){
                 parserPractice.setFiles(directory + "/" + String.valueOf(c) + "/"
                                 + inputPrefix + (i < 10 ? "0" : "") + i + extension,
@@ -181,5 +181,6 @@ public class ParserPractice {
                 parserPractice.generateOutput();
             }
         }
+
     }
 }

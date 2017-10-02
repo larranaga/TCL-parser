@@ -112,6 +112,102 @@ public interface TclV2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitReturnArguments(TclV2Parser.ReturnArgumentsContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#ifBlockSubroutine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfBlockSubroutine(TclV2Parser.IfBlockSubroutineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#elseifBlockSubroutine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElseifBlockSubroutine(TclV2Parser.ElseifBlockSubroutineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#elseifSubroutine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElseifSubroutine(TclV2Parser.ElseifSubroutineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#elseBlockSubroutine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElseBlockSubroutine(TclV2Parser.ElseBlockSubroutineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#elseSubBlockSubroutine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElseSubBlockSubroutine(TclV2Parser.ElseSubBlockSubroutineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#forBlockSubroutine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForBlockSubroutine(TclV2Parser.ForBlockSubroutineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#forSetArgumentSubroutine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForSetArgumentSubroutine(TclV2Parser.ForSetArgumentSubroutineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#incrArgumentSubroutine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIncrArgumentSubroutine(TclV2Parser.IncrArgumentSubroutineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#whileBlockSubroutine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhileBlockSubroutine(TclV2Parser.WhileBlockSubroutineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#instructionBlockSubroutineCycle}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInstructionBlockSubroutineCycle(TclV2Parser.InstructionBlockSubroutineCycleContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#cycleInstructionSubRoutine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCycleInstructionSubRoutine(TclV2Parser.CycleInstructionSubRoutineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#switchBlockSubroutine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSwitchBlockSubroutine(TclV2Parser.SwitchBlockSubroutineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#caseBlockSubroutine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCaseBlockSubroutine(TclV2Parser.CaseBlockSubroutineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#caseSubBlockSubroutine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCaseSubBlockSubroutine(TclV2Parser.CaseSubBlockSubroutineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#defaultBlockSubroutine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefaultBlockSubroutine(TclV2Parser.DefaultBlockSubroutineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#defaultSubBlockSubroutine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefaultSubBlockSubroutine(TclV2Parser.DefaultSubBlockSubroutineContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TclV2Parser#declaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -225,6 +321,12 @@ public interface TclV2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitForBlock(TclV2Parser.ForBlockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TclV2Parser#forSetArgument}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForSetArgument(TclV2Parser.ForSetArgumentContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TclV2Parser#incrArgument}.
 	 * @param ctx the parse tree

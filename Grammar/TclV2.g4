@@ -56,10 +56,10 @@ instructionBlockSubroutine          :   subRoutineInstruction instructionBlockSu
                                     |
                                     ;
 subRoutineInstruction               :   declaration ';'
-                                    |   ifBlock
-                                    |   whileBlock
-                                    |   forBlock
-                                    |   switchBlock
+                                    |   ifBlockSubroutine
+                                    |   whileBlockSubroutine
+                                    |   forBlockSubroutine
+                                    |   switchBlockSubroutine
                                     |   readInput ';'
                                     |   writeOutput ';'
                                     |   execution ';'
@@ -70,11 +70,65 @@ returnStatement                     :   'return' returnArguments;
 
 returnArguments                     :   single_id
                                     |   execution
+                                    |   value
                                     |
                                     ;
 
+//SUBROUTINECONTROLSTRUCTURES
 
+ifBlockSubroutine             :   'if' '{' expression '}' 'then' '{' instructionBlockSubroutine '}' elseifBlockSubroutine elseBlockSubroutine;
+elseifBlockSubroutine         :   elseifSubroutine elseifBlockSubroutine
+                    |
+                    ;
+elseifSubroutine              :   'elseif' '{' expression '}' 'then' '{' instructionBlockSubroutine '}';
+elseBlockSubroutine           :   elseSubBlockSubroutine elseBlockSubroutine
+                    |
+                    ;
+elseSubBlockSubroutine        :   'else' '{' instructionBlockSubroutine '}';
 
+//for
+forBlockSubroutine            :   'for' '{' 'set' ID forSetArgumentSubroutine '}' '{' expression '}' '{' 'incr' ID incrArgumentSubroutine '}' '{' instructionBlockSubroutineCycle '}';
+
+forSetArgumentSubroutine      :   INTEGERVALUE
+                    |   'expr' '{' expression '}'
+                    |   single_id
+                    ;
+
+incrArgumentSubroutine        :   INTEGERVALUE
+                    |
+                    ;
+
+whileBlockSubroutine          :   'while' '{' expression '}' '{' instructionBlockSubroutineCycle  '}';
+
+instructionBlockSubroutineCycle    :   cycleInstructionSubRoutine instructionBlockSubroutineCycle
+                    |
+                    ;
+
+cycleInstructionSubRoutine    :   declaration ';'
+                    |   ifBlockSubroutine
+                    |   whileBlockSubroutine
+                    |   forBlockSubroutine
+                    |   switchBlockSubroutine
+                    |   readInput ';'
+                    |   writeOutput ';'
+                    |   execution ';'
+                    |   'break' ';'
+                    |   'continue' ';'
+                    |   returnStatement  ';'
+                    ;
+
+switchBlockSubroutine         :   'switch' '$' ID '{' caseBlockSubroutine defaultBlockSubroutine '}';
+
+caseBlockSubroutine           :   caseSubBlockSubroutine caseBlockSubroutine
+                    |
+                    ;
+
+caseSubBlockSubroutine        :   'case' INTEGERVALUE '{' instructionBlockSubroutineCycle '}';
+
+defaultBlockSubroutine        :   defaultSubBlockSubroutine
+                    |
+                    ;
+defaultSubBlockSubroutine     :   'default' '{' instructionBlockSubroutineCycle '}';
 
 /*********************************************declaration *************************************************************/
 
@@ -145,7 +199,12 @@ elseBlock           :   elseSubBlock elseBlock
 elseSubBlock        :   'else' '{' instructionBlock '}';
 
 //for
-forBlock            :   'for' '{' 'set' ID INTEGERVALUE '}' '{' expression '}' '{' 'incr' ID incrArgument '}' '{' instructionBlockCycle '}';
+forBlock            :   'for' '{' 'set' ID forSetArgument '}' '{' expression '}' '{' 'incr' ID incrArgument '}' '{' instructionBlockCycle '}';
+
+forSetArgument      :   INTEGERVALUE
+                    |   'expr' '{' expression '}'
+                    |   single_id
+                    ;
 
 incrArgument        :   INTEGERVALUE
                     |
