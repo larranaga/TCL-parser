@@ -1,0 +1,4 @@
+2
+1
+1
+<17:7> Error semantico: numero incorrecto de parametros al llamar la subrutina 'sum'.

@@ -4,52 +4,138 @@ tcl                 :   subRoutine* instructionBlock EOF;
 
 instructionBlock    :   instruction*;
 
-subRoutine          :   ;
+subRoutine          :   PROC ID '{' ('{'ID'}')* '}' '{' subRoutineInstruction* '}';
 
-instruction         :   declaration TOKEN_PYC
-                    |   execute TOKEN_PYC
-                    |   readInput TOKEN_PYC
-                    |   writeOutput TOKEN_PYC
+subRoutineInstruction   :   declaration ';'
+                        |   execute ';'
+                        |   readInput ';'
+                        |   writeOutput ';'
+                        |   subRoutineIfBlock
+                        |   subRoutineWhileBlock
+                        |   subRoutineForBlock
+                        |   subRoutineSwitchBlock
+                        |   returnBlock ';'
+                        ;
+
+subRoutineIfBlock             :   IF '{' expression '}' THEN '{' subRoutineInstruction '}' (ELSEIF '{' expression '}' THEN '{' subRoutineInstruction '}')* (ELSE '{' subRoutineInstruction '}')?;
+
+subRoutineWhileBlock          :   WHILE '{' expression '}' '{' subRoutineCycleInstruction* '}';
+
+subRoutineForBlock            :   FOR '{' SET ID forSetArgument '}' '{' expression '}' '{' INCR ID INTEGERVALUE? '}' '{' subRoutineCycleInstruction* '}';
+
+subRoutineCycleInstruction  :   subRoutineInstruction
+                            |   BREAK ';'
+                            |   CONTINUE ';'
+                            ;
+
+subRoutineSwitchBlock       :   SWITCH '$' ID '{' subRoutineCaseBlock* subRoutineDefaultBlock? '}';
+
+subRoutineCaseBlock         :   CASE INTEGERVALUE '{' subRoutineInstruction* '}';
+
+subRoutineDefaultBlock      :   DEFAULT '{' subRoutineInstruction* '}';
+
+
+returnBlock                 :   RETURN returnArgument?;
+
+returnArgument              :   callID
+                            |   execute
+                            |   value=(INTEGERVALUE | STRINGVALUE | DOUBLEVALUE)
+                            ;
+
+instruction         :   declaration ';'
+                    |   execute ';'
+                    |   readInput ';'
+                    |   writeOutput ';'
                     |   ifBlock
                     |   whileBlock
                     |   forBlock
                     |   switchBlock
                     ;
 
-declaration
-
-execute             :   ;
-
-readInput           :   ;
-
-writeOutput         :   ;
-
-ifBlock             :   ;
-
-whileBlock          :   ;
-
-forBlock            :   ;
-
-switchBlock         :   ;
+declaration         :   SET ID ('(' array_index ')')? value_to_assign;
 
 
+array_index         :   execute
+                    |   value=(INTEGERVALUE | DOUBLEVALUE | STRINGVALUE)
+                    ;
 
-id                  :   ID (TOKEN_PAR_IZQ expression TOKEN_PAR_DER)? ;
+value_to_assign     :   value=(INTEGERVALUE | DOUBLEVALUE | STRINGVALUE)
+                    |   execute
+                    |   callID
+                    ;
 
-callID              :   TOKEN_DOLLAR id;
+execute             :   '[' executeBody ']';
+
+executeBody         :   EXPR '{' expression '}'
+                    |   ID subroutineArgumentListCall
+                    |   ARRAY arrayCallArguments
+                    |   readInput
+                    ;
+
+subroutineArgumentListCall  :   subRoutineArgumentCall* ;
+
+subRoutineArgumentCall      :   '{' subRoutineArgumentFormat '}' ;
+
+subRoutineArgumentFormat    :   execute
+                            |   EXPR '{' expression '}'
+                            |   callID
+                            |   value=(INTEGERVALUE | DOUBLEVALUE | STRINGVALUE)
+                            ;
+
+arrayCallArguments          :   SIZE ID
+                            |   EXISTS ID
+                            ;
+
+readInput           :   GETS STDIN;
+
+writeOutput         :   PUTS outputArgument;
+
+outputArgument      :   execute
+                    |   value=(INTEGERVALUE | STRINGVALUE | DOUBLEVALUE)
+                    |   callID
+                    ;
+
+ifBlock             :   IF '{' expression '}' THEN '{' instructionBlock '}' (ELSEIF '{' expression '}' THEN '{'instructionBlock '}')* (ELSE '{' instructionBlock '}')?;
+
+
+whileBlock          :   WHILE '{' expression '}' '{' cycleInstruction* '}';
+
+forBlock            :   FOR '{' SET ID forSetArgument '}' '{' expression '}' '{' INCR ID INTEGERVALUE? '}' '{' cycleInstruction* '}';
+
+forSetArgument      :   INTEGERVALUE
+                    |   EXPR '{' expression '}'
+                    |   callID
+                    ;
+
+
+cycleInstruction    :   instruction
+                    |   BREAK ';'
+                    |   CONTINUE ';'
+                    ;
+
+switchBlock         :   SWITCH '$' ID '{' caseBlock* defaultBlock? '}';
+
+caseBlock           :   CASE INTEGERVALUE '{' instruction* '}';
+
+defaultBlock        :   DEFAULT '{' instruction* '}';
+
+
+id                  :   ID ('(' expression ')')? ;
+
+callID              :   '$' id;
 
 expression          :   value=(INTEGERVALUE | DOUBLEVALUE | STRINGVALUE)
                     |   execute
                     |   callID
-                    |   TOKEN_PAR_IZQ expression TOKEN_PAR_DER
-                    |   op=(TOKEN_MENOS | TOKEN_NOT ) expression
-                    |   expression TOKEN_POT expression
-                    |   expression op=(TOKEN_DIV | TOKEN_MUL | TOKEN_MOD) expression
-                    |   expression op=(TOKEN_MAS | TOKEN_MENOS) expression
-                    |   expression op=(TOKEN_MENOR | TOKEN_MENOR_IGUAL | TOKEN_MAYOR | TOKEN_MAYOR_IGUAL) expression
-                    |   expression op=(TOKEN_IGUAL_NUM | TOKEN_IGUAL_STR | TOKEN_DIFF_NUM | TOKEN_DIFF_STR) expression
-                    |   expression TOKEN_AND expression
-                    |   expression TOKEN_OR expression
+                    |   '(' expression ')'
+                    |   op=('-'| '!') expression
+                    |   expression '**' expression
+                    |   expression op=('/' | '*' | '%') expression
+                    |   expression op=('+' | '-') expression
+                    |   expression op=('<' | '<=' | '>' | '>=') expression
+                    |   expression op=('==' | 'eq' | '!=' | 'ne') expression
+                    |   expression '&&' expression
+                    |   expression '||' expression
                     ;
 
 //keywords
@@ -74,42 +160,13 @@ EXISTS              :   'exists';
 SIZE                :   'size';
 PROC                :   'proc';
 RETURN              :   'return';
+CASE                :   'case';
 
 
 //lexems
 STRINGVALUE         :   '"'(~[\r\n])*'"';
-
 INTEGERVALUE        :   [0-9][0-9]*;
-
 DOUBLEVALUE         :   [0-9]+'.'[0-9]+;
-
-//Tokens
-TOKEN_LLAVE_IZQ     :   '{';
-TOKEN_LLAVE_DER     :   '}';
-TOKEN_DOLLAR        :   '$';
-TOKEN_PYC           :   ';';
-TOKEN_COR_IZQ       :   '[';
-TOKEN_COR_DER       :   ']';
-TOKEN_PAR_IZQ       :   '(';
-TOKEN_PAR_DER       :   ')';
-TOKEN_MAYOR         :   '>';
-TOKEN_MENOR         :   '<';
-TOKEN_MAYOR_IGUAL   :   '>=';
-TOKEN_MENOR_IGUAL   :   '<=';
-TOKEN_IGUAL_STR     :   'eq';
-TOKEN_IGUAL_NUM     :   '==';
-TOKEN_DIFF_STR      :   'ne';
-TOKEN_DIFF_NUM      :   '!=';
-TOKEN_NOT           :   '!';
-TOKEN_AND           :   '&&';
-TOKEN_OR            :   '||';
-TOKEN_MAS           :   '+';
-TOKEN_MENOS         :   '-';
-TOKEN_MUL           :   '*';
-TOKEN_POT           :   '**';
-TOKEN_DIV           :   '/';
-TOKEN_MOD           :   '%';
-
 
 ID                  : [a-zA-Z_][a-zA-Z0-9_]*;
 WS                  : [ \n\t\r]+ -> skip ;
